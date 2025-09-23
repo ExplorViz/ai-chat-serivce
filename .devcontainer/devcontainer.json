@@ -1,0 +1,7 @@
+{
+  "name": "CopilotKit Express",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "forwardPorts": [4300],
+  "initializeCommand": "find ~/.ssh/ -type f -exec grep -l 'PRIVATE' {} \\; | xargs ssh-add",
+  "postCreateCommand": "yarn install"
+}

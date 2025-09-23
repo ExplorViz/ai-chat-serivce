@@ -1,0 +1,41 @@
+{
+  "name": "copilotkit-backend",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Karim Issa",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "start": "node dist/index.js",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format",
+    "postversion": "git push --follow-tags"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.33.0",
+    "prettier": "^3.6.2",
+    "prettier-preset": "^1.0.1",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.1",
+    "typescript-preset": "^1.0.1"
+  },
+  "prettier": "prettier-preset",
+  "dependencies": {
+    "@copilotkit/runtime": "^1.10.2",
+    "@types/ws": "^8.18.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "websocket-express": "^4.0.1",
+    "ws": "^8.18.3"
+  }
+}

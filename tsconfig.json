@@ -1,0 +1,18 @@
+{
+  "extends": "typescript-preset",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "declaration": true,
+    "allowJs": false,
+    "checkJs": false,
+    "sourceMap": true,
+    "inlineSources": true,
+    "skipLibCheck": true,
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}
