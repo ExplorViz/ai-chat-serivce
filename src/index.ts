@@ -6,8 +6,8 @@ import {providers} from './providers'
 import cors from 'cors'
 
 const app = express()
+
 const runtime = new CopilotRuntime()
-const endpoint = '/copilot'
 
 app.use(
   cors({
@@ -26,7 +26,7 @@ app.use(
   })
 )
 
-app.get('/providers', (req, res) => {
+app.use('/providers', (req, res) => {
   res.json({
     providers: providers.map(({id, name, models}) => ({
       id,
@@ -36,14 +36,14 @@ app.get('/providers', (req, res) => {
   })
 })
 
-app.use(endpoint, (req, res, next) => {
+app.use('/copilot', (req, res, next) => {
   try {
     const models = providers.find(({id}) => id === req.headers['x-explorviz-provider'])?.models
     const serviceAdapter = models?.find(({id}) => id === req.headers['x-explorviz-model'])?.serviceAdapter
 
     if (serviceAdapter) {
       const handler = copilotRuntimeNodeHttpEndpoint({
-        endpoint,
+        endpoint: '/copilot',
         runtime,
         serviceAdapter,
       })
