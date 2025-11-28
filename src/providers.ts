@@ -9,7 +9,7 @@ interface Provider {
   models: {
     id: string
     name: string
-    serviceAdapter: CopilotServiceAdapter
+    serviceAdapter: CopilotServiceAdapter | GoogleGenerativeAIAdapter | AnthropicAdapter
   }[]
 }
 
@@ -31,11 +31,13 @@ if (googleApiKey) {
   providers.push({
     id: 'google',
     name: 'Google',
-    models: ['default'].map((model) => ({
-      id: model,
-      name: model,
-      serviceAdapter: new GoogleGenerativeAIAdapter({apiKey: googleApiKey}),
-    })),
+    models: ['gemini-3-pro-preview', 'gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.5-flash-lite'].map((model) => {
+      return {
+        id: model,
+        name: model,
+        serviceAdapter: new GoogleGenerativeAIAdapter({apiKey: googleApiKey, model}),
+      }
+    }),
   })
 }
 
@@ -43,10 +45,12 @@ if (anthropicApiKey) {
   providers.push({
     id: 'anthropic',
     name: 'Anthropic',
-    models: ['default'].map((model) => ({
-      id: model,
-      name: model,
-      serviceAdapter: new AnthropicAdapter({anthropic: new Anthropic({apiKey: anthropicApiKey})}),
-    })),
+    models: ['claude-sonnet-4-5', 'claude-haiku-4-5', 'claude-opus-4-5', 'claude-opus-4-1'].map((model) => {
+      return {
+        id: model,
+        name: model,
+        serviceAdapter: new AnthropicAdapter({anthropic: new Anthropic({apiKey: anthropicApiKey}), model}),
+      }
+    }),
   })
 }
