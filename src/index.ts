@@ -46,6 +46,7 @@ app.use('/copilot', (req, res, next) => {
         endpoint: '/copilot',
         runtime,
         serviceAdapter,
+        logLevel: 'debug',
       })
       handler(req, res)
     } else {
