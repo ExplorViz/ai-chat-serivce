@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
 import {CopilotRuntime, copilotRuntimeNodeHttpEndpoint} from '@copilotkit/runtime'
-import {port} from './env'
+import {logLevel, port} from './env'
 import {providers} from './providers'
 import cors from 'cors'
 
@@ -46,7 +46,7 @@ app.use('/copilot', (req, res, next) => {
         endpoint: '/copilot',
         runtime,
         serviceAdapter,
-        logLevel: 'debug',
+        logLevel,
       })
       handler(req, res)
     } else {
