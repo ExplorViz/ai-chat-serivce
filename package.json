@@ -17,29 +17,29 @@
     "postversion": "git push --follow-tags"
   },
   "devDependencies": {
-    "@eslint/js": "^9.33.0",
+    "@eslint/js": "^9.39.1",
     "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.3",
-    "@types/node": "^24.3.0",
-    "eslint": "^9.33.0",
-    "prettier": "^3.6.2",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.2",
+    "eslint": "^9.39.1",
+    "prettier": "^3.7.4",
     "prettier-preset": "^1.0.1",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.39.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.49.0",
     "typescript-preset": "^1.0.1"
   },
   "prettier": "prettier-preset",
   "dependencies": {
-    "@ag-ui/client": "^0.0.39",
-    "@ag-ui/core": "^0.0.40",
-    "@ag-ui/encoder": "^0.0.40",
-    "@ag-ui/langgraph": "^0.0.18",
-    "@ag-ui/proto": "^0.0.40",
+    "@ag-ui/client": "^0.0.42",
+    "@ag-ui/core": "^0.0.42",
+    "@ag-ui/encoder": "^0.0.42",
+    "@ag-ui/langgraph": "^0.0.20",
+    "@ag-ui/proto": "^0.0.42",
     "@copilotkit/runtime": "^1.10.6",
     "@types/ws": "^8.18.1",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0"
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
