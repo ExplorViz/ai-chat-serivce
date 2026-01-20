@@ -9,6 +9,7 @@ const app = express()
 
 const runtime = new CopilotRuntime()
 
+// resolve CORS errors in modern browsers
 app.use(
   cors({
     allowedHeaders: [
@@ -26,6 +27,7 @@ app.use(
   })
 )
 
+// a simple endpoint to list available providers and models
 app.use('/providers', (req, res) => {
   res.json({
     providers: providers.map(({id, name, models}) => ({
@@ -36,8 +38,10 @@ app.use('/providers', (req, res) => {
   })
 })
 
+// the main copilot endpoint, proxied to the selected service adapter
 app.use('/copilot', (req, res, next) => {
   try {
+    // determine the service adapter based on the request headers
     const models = providers.find(({id}) => id === req.headers['x-explorviz-provider'])?.models
     const serviceAdapter = models?.find(({id}) => id === req.headers['x-explorviz-model'])?.serviceAdapter
 
