@@ -1,18 +1,17 @@
 {
   "extends": "typescript-preset",
   "compilerOptions": {
+    "rootDir": "./src",
     "outDir": "./dist",
     "declaration": true,
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "allowJs": false,
     "checkJs": false,
     "sourceMap": true,
     "inlineSources": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
