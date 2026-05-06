@@ -1,19 +1,21 @@
 {
-  "name": "copilotkit-backend",
-  "version": "1.0.0",
-  "description": "",
+  "name": "explorviz-ai-chat-service",
+  "version": "2.0.0",
+  "description": "ExplorViz AI chat service. Bridges the ExplorViz frontend chatbot to LLM providers (OpenAI, Anthropic, Google) via the CopilotKit runtime.",
   "license": "MIT",
   "author": "Karim Issa",
+  "contributors": ["Malte Hansen"],
   "main": "dist/index.js",
-  "types": "dist/index.d.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "prepublishOnly": "npm run lint",
-    "preversion": "npm run lint",
-    "version": "npm run format",
+    "prepublishOnly": "pnpm run lint",
+    "preversion": "pnpm run lint",
+    "version": "pnpm run format",
     "postversion": "git push --follow-tags"
   },
   "devDependencies": {
@@ -24,22 +26,19 @@
     "eslint": "^9.39.1",
     "prettier": "^3.7.4",
     "prettier-preset": "^1.0.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.49.0",
     "typescript-preset": "^1.0.1"
   },
   "prettier": "prettier-preset",
   "dependencies": {
-    "@ag-ui/client": "^0.0.42",
-    "@ag-ui/core": "^0.0.42",
-    "@ag-ui/encoder": "^0.0.42",
-    "@ag-ui/langgraph": "^0.0.20",
-    "@ag-ui/proto": "^0.0.42",
-    "@copilotkit/runtime": "^1.10.6",
-    "@types/ws": "^8.18.1",
+    "@anthropic-ai/sdk": "^0.57.0",
+    "@copilotkit/runtime": "^1.57.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "openai": "^5.12.2"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "pnpm@10.27.0"
 }
