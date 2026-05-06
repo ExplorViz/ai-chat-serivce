@@ -18,7 +18,6 @@ const corsOptions: CorsOptions = {
 }
 
 const app = express()
-const runtime = new CopilotRuntime()
 
 app.use(cors(corsOptions))
 
@@ -48,8 +47,8 @@ const copilotHandler = (req: Request, res: Response, next: NextFunction) => {
     return
   }
 
-  const providerId = stringHeader(req.headers[PROVIDER_HEADER])
-  const modelId = stringHeader(req.headers[MODEL_HEADER])
+  const providerId = stringHeader(req.headers[PROVIDER_HEADER]) ?? queryString(req.query.provider)
+  const modelId = stringHeader(req.headers[MODEL_HEADER]) ?? queryString(req.query.model)
 
   // CopilotKit performs an initial runtime "info" handshake before the UI has
   // provider/model state ready. If headers are missing, fall back to the first
@@ -72,6 +71,12 @@ const copilotHandler = (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
+    // A new CopilotRuntime must be created per request. The singleton pattern
+    // causes handleServiceAdapter() to chain onto the same agents Promise,
+    // making it see isAgentsListEmpty=false on the second call and skip
+    // overriding the default agent — so every request would always use
+    // whichever adapter was selected first (typically OpenAI).
+    const runtime = new CopilotRuntime()
     const handler = copilotRuntimeNodeHttpEndpoint({
       endpoint: '/copilot',
       runtime,
@@ -104,6 +109,13 @@ app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
 function stringHeader(value: string | string[] | undefined): string | undefined {
   if (Array.isArray(value)) return value[0]
   return value
+}
+
+function queryString(value: unknown): string | undefined {
+  if (Array.isArray(value)) {
+    return typeof value[0] === 'string' ? value[0] : undefined
+  }
+  return typeof value === 'string' ? value : undefined
 }
 
 const server = app.listen(port, () => {
