@@ -7,7 +7,7 @@ WORKDIR /app
 # Install app dependencies
 COPY package.json .
 COPY pnpm-lock.yaml .
-RUN corepack enable && pnpm install --frozen-lockfile
+RUN npm install -g pnpm@10.33.3 && pnpm install --frozen-lockfile
 
 # Bundle app source
 COPY . .
