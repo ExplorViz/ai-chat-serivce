@@ -19,7 +19,7 @@ const OPENAI_MODELS = ['gpt-5', 'gpt-5-mini', 'gpt-4o', 'gpt-4o-mini'] as const
 
 const GOOGLE_MODELS = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.5-flash-lite'] as const
 
-const ANTHROPIC_MODELS = ['claude-opus-4-7', 'claude-sonnet-4-6', 'claude-haiku-4-5'] as const
+const ANTHROPIC_MODELS = ['claude-opus-4-7', 'claude-sonnet-4-5', 'claude-haiku-4-5'] as const
 
 function buildOpenAiProvider(apiKey: string): Provider {
   const openai = new OpenAI({apiKey})
@@ -47,7 +47,7 @@ function buildGoogleProvider(apiKey: string): Provider {
 }
 
 function buildAnthropicProvider(apiKey: string): Provider {
-  const anthropic = new Anthropic({apiKey})
+  const anthropic = new Anthropic({apiKey, baseURL: "https://api.anthropic.com/v1"})
   return {
     id: 'anthropic',
     name: 'Anthropic',
